@@ -80,5 +80,15 @@ namespace ExpenseTracker.Forms
                 Application.Exit();
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            ShowView(new TransactionView(_currentAccount));
+        }
+
+        private void addtransaction_btn_Click(object sender, EventArgs e)
+        {
+            ShowView(new TransactionControl(_currentAccount));
+        }
     }
 }

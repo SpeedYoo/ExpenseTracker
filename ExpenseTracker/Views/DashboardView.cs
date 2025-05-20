@@ -76,10 +76,8 @@ namespace ExpenseTracker.Views
 
         private async Task PopulateExpenseByCategoryChartAsync()
         {
-            // pobierz pełne listy wydatków
             var expenses = await _txService.GetForAccountExpensesAsync(_currentAccount.AccountId);
 
-            // grupuj po kategorii
             var byCat = expenses
                 .GroupBy(t => t.Category?.Name ?? "Brak")
                 .Select(g => new { Name = g.Key, Sum = g.Sum(t => t.Amount) })

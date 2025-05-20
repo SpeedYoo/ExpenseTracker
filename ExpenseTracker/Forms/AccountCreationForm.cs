@@ -28,7 +28,6 @@ namespace ExpenseTracker.Forms
 
         private async void btnSave_Click(object sender, EventArgs e)
         {
-            // Walidacja minimalna
             if (string.IsNullOrWhiteSpace(txtName.Text))
             {
                 MessageBox.Show("Nazwa konta nie może być pusta.", "Błąd",

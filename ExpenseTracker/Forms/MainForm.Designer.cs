@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             panel2 = new Panel();
+            addtransaction_btn = new Button();
+            transaction_btn = new Button();
+            logout_btn = new Button();
             user_name = new Label();
             category_btn = new Button();
             income_btn = new Button();
@@ -37,7 +40,6 @@
             label2 = new Label();
             pictureBox1 = new PictureBox();
             panel_main = new Panel();
-            logout_btn = new Button();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -45,6 +47,8 @@
             // panel2
             // 
             panel2.BackColor = Color.SeaGreen;
+            panel2.Controls.Add(addtransaction_btn);
+            panel2.Controls.Add(transaction_btn);
             panel2.Controls.Add(logout_btn);
             panel2.Controls.Add(user_name);
             panel2.Controls.Add(category_btn);
@@ -58,6 +62,51 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(237, 747);
             panel2.TabIndex = 1;
+            // 
+            // addtransaction_btn
+            // 
+            addtransaction_btn.BackColor = Color.SeaGreen;
+            addtransaction_btn.FlatAppearance.BorderSize = 0;
+            addtransaction_btn.FlatStyle = FlatStyle.Flat;
+            addtransaction_btn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            addtransaction_btn.ForeColor = Color.White;
+            addtransaction_btn.Location = new Point(12, 548);
+            addtransaction_btn.Name = "addtransaction_btn";
+            addtransaction_btn.Size = new Size(212, 44);
+            addtransaction_btn.TabIndex = 10;
+            addtransaction_btn.Text = "Dodaj transakcje";
+            addtransaction_btn.UseVisualStyleBackColor = false;
+            addtransaction_btn.Click += addtransaction_btn_Click;
+            // 
+            // transaction_btn
+            // 
+            transaction_btn.BackColor = Color.SeaGreen;
+            transaction_btn.FlatAppearance.BorderSize = 0;
+            transaction_btn.FlatStyle = FlatStyle.Flat;
+            transaction_btn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            transaction_btn.ForeColor = Color.White;
+            transaction_btn.Location = new Point(12, 498);
+            transaction_btn.Name = "transaction_btn";
+            transaction_btn.Size = new Size(212, 44);
+            transaction_btn.TabIndex = 9;
+            transaction_btn.Text = "Lista transakcji";
+            transaction_btn.UseVisualStyleBackColor = false;
+            transaction_btn.Click += button1_Click;
+            // 
+            // logout_btn
+            // 
+            logout_btn.BackColor = Color.SeaGreen;
+            logout_btn.FlatAppearance.BorderSize = 0;
+            logout_btn.FlatStyle = FlatStyle.Flat;
+            logout_btn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            logout_btn.ForeColor = Color.White;
+            logout_btn.Location = new Point(12, 691);
+            logout_btn.Name = "logout_btn";
+            logout_btn.Size = new Size(212, 44);
+            logout_btn.TabIndex = 8;
+            logout_btn.Text = "Wyloguj się";
+            logout_btn.UseVisualStyleBackColor = false;
+            logout_btn.Click += logout_btn_Click;
             // 
             // user_name
             // 
@@ -153,26 +202,12 @@
             // 
             // panel_main
             // 
+            panel_main.AutoSize = true;
             panel_main.Dock = DockStyle.Fill;
             panel_main.Location = new Point(237, 0);
             panel_main.Name = "panel_main";
             panel_main.Size = new Size(1280, 747);
             panel_main.TabIndex = 2;
-            // 
-            // logout_btn
-            // 
-            logout_btn.BackColor = Color.SeaGreen;
-            logout_btn.FlatAppearance.BorderSize = 0;
-            logout_btn.FlatStyle = FlatStyle.Flat;
-            logout_btn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            logout_btn.ForeColor = Color.White;
-            logout_btn.Location = new Point(12, 691);
-            logout_btn.Name = "logout_btn";
-            logout_btn.Size = new Size(212, 44);
-            logout_btn.TabIndex = 8;
-            logout_btn.Text = "Wyloguj się";
-            logout_btn.UseVisualStyleBackColor = false;
-            logout_btn.Click += logout_btn_Click;
             // 
             // MainForm
             // 
@@ -189,6 +224,7 @@
             panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -202,5 +238,7 @@
         private Panel panel_main;
         private Label user_name;
         private Button logout_btn;
+        private Button transaction_btn;
+        private Button addtransaction_btn;
     }
 }

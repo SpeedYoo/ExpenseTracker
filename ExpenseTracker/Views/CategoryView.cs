@@ -49,7 +49,6 @@ namespace ExpenseTracker.Views
             dataGridViewCategories.AutoGenerateColumns = false;
             dataGridViewCategories.Columns.Clear();
 
-            // kolumna z nazwą kategorii
             dataGridViewCategories.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = "colName",
@@ -58,7 +57,6 @@ namespace ExpenseTracker.Views
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
             });
 
-            // kolumna z typem (Income/Expense)
             dataGridViewCategories.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = "colType",

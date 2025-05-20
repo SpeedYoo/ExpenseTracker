@@ -22,7 +22,6 @@ namespace BudgetManagerApp
 
         private async void AccountSelectionForm_Load(object sender, EventArgs e)
         {
-            // Pobierz list? kont i wype?nij ComboBox
             var accounts = await _ctx.Accounts
                                      .OrderBy(a => a.Name)
                                      .ToListAsync();
@@ -30,7 +29,6 @@ namespace BudgetManagerApp
             cboAccounts.DisplayMember = "Name";
             cboAccounts.ValueMember = "AccountId";
 
-            // Je?li brak kont, od razu otwórz okno tworzenia
             if (!accounts.Any())
                 OpenNewAccountDialog();
         }
@@ -45,7 +43,6 @@ namespace BudgetManagerApp
                 cboAccounts.SelectedValue = form.CreatedAccountId;
             }
         }
-
 
         private void btnProceed_Click(object sender, EventArgs e)
         {

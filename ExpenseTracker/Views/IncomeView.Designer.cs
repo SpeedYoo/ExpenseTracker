@@ -28,6 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             panel1 = new Panel();
             label1 = new Label();
             IncomeDataView = new DataGridView();
@@ -43,14 +46,17 @@
             label3 = new Label();
             amountField = new NumericUpDown();
             label2 = new Label();
+            chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)IncomeDataView).BeginInit();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)amountField).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)chart1).BeginInit();
             SuspendLayout();
             // 
             // panel1
             // 
+            panel1.Controls.Add(chart1);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(IncomeDataView);
             panel1.Location = new Point(30, 23);
@@ -215,6 +221,22 @@
             label2.TabIndex = 1;
             label2.Text = "Kwota";
             // 
+            // chart1
+            // 
+            chartArea1.Name = "ChartArea1";
+            chart1.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            chart1.Legends.Add(legend1);
+            chart1.Location = new Point(339, 37);
+            chart1.Name = "chart1";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            chart1.Series.Add(series1);
+            chart1.Size = new Size(8, 8);
+            chart1.TabIndex = 2;
+            chart1.Text = "chart1";
+            // 
             // IncomeView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -231,6 +253,7 @@
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)amountField).EndInit();
+            ((System.ComponentModel.ISupportInitialize)chart1).EndInit();
             ResumeLayout(false);
         }
 
@@ -258,5 +281,6 @@
         private ComboBox comboBoxCategory;
         private RichTextBox txtDescription;
         private DateTimePicker dateTimePickerOccurredAt;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
     }
 }

@@ -20,7 +20,6 @@ namespace ExpenseTracker.Views
         private readonly TransactionService _txService;
         private readonly CategoryService _categoryService;
 
-        // trzymamy bieżące transakcje, by odwołać się do nich przy operacjach
         private List<Transaction> _transactions = new();
 
         public IncomeView(Account account)
@@ -74,7 +73,6 @@ namespace ExpenseTracker.Views
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
             });
             IncomeDataView.CellFormatting += IncomeDataView_CellFormatting;
-            // formatowanie komórki, by pokazać Category.Name zamiast obiektu
         }
         private void IncomeDataView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
