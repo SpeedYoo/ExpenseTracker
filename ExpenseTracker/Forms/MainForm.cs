@@ -17,12 +17,12 @@ namespace ExpenseTracker.Forms
     public partial class MainForm : Form
     {
         private Account _currentAccount;
+        private UserControl _currentView;
 
         public MainForm(Account account)
         {
             InitializeComponent();
             _currentAccount = account;
-
             user_name.Text = _currentAccount.Name;
 
             ShowView(new DashboardView(_currentAccount));
@@ -31,9 +31,28 @@ namespace ExpenseTracker.Forms
         private void ShowView(UserControl view)
         {
             panel_main.Controls.Clear();
-            view.Dock = DockStyle.Fill;
+            view.AutoSize = true;
+            view.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             panel_main.Controls.Add(view);
+            CenterControl(view, panel_main);
+            _currentView = view;
         }
+
+
+        private void CenterControl(Control ctrl, Control container)
+        {
+            ctrl.Left = (container.ClientSize.Width - ctrl.Width) / 2;
+            ctrl.Top = (container.ClientSize.Height - ctrl.Height) / 3;
+            //ShowView(_currentView);
+        }
+
+        private void panelMain_Resize(object sender, EventArgs e)
+        {
+            if (panel_main.Controls.Count > 0)
+                CenterControl(panel_main.Controls[0], panel_main);
+        }
+
+
 
         private void MainForm_Load(object sender, EventArgs e)
         {

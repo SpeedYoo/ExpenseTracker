@@ -97,6 +97,7 @@ namespace BudgetManagerApp
             Controls.Add(btnNewAccount);
             Controls.Add(btnProceed);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             Name = "AccountSelectionForm";
             Text = "Logowanie";
             Load += AccountSelectionForm_Load;

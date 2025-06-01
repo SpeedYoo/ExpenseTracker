@@ -150,6 +150,7 @@
             Controls.Add(txtDescription);
             Controls.Add(txtName);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             Name = "AccountCreationForm";
             Text = "AccountForm";
             ((System.ComponentModel.ISupportInitialize)numInitialBalance).EndInit();

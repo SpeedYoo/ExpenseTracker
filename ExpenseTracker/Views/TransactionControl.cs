@@ -43,9 +43,9 @@ namespace ExpenseTracker.Views
         {
             List<Category> list;
             if (radioExpense.Checked)
-                list = await _catService.GetForAccountIncomeCategoriesAsync(_account.AccountId);
-            else
                 list = await _catService.GetForAccountExpensesCategoriesAsync(_account.AccountId);
+            else
+                list = await _catService.GetForAccountIncomeCategoriesAsync(_account.AccountId);
 
             comboCategory.DataSource = list;
             comboCategory.DisplayMember = nameof(Category.Name);
@@ -87,6 +87,9 @@ namespace ExpenseTracker.Views
             await _txService.CreateAsync(tx);
             if (TransactionSaved != null)
                 await TransactionSaved(tx);
+
+            MessageBox.Show("Transakcja została dodana pomyślnie!", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
         }
     }
 }

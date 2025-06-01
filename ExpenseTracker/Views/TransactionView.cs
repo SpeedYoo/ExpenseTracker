@@ -4,9 +4,12 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ExpenseTracker.Core.Interfaces;
+using ExpenseTracker.Data;
 using ExpenseTracker.Data.Models;
 using ExpenseTracker.Services.Implementations;
 
@@ -19,12 +22,19 @@ namespace ExpenseTracker.Views
         private BindingList<Transaction> _transactions;
         private ContextMenuStrip _contextMenu;
 
+        private List<Transaction> _allTransactions;
+
+        private List<Category> _categories;
+
+        private readonly ICategoryService _categoryService;
+
         public TransactionView(Account account)
         {
             InitializeComponent();
 
             _currentAccount = account;
             _txService = new TransactionService();
+            _categoryService = new CategoryService();
             _transactions = new BindingList<Transaction>();
 
             this.Load += TransactionView_Load;
@@ -78,11 +88,22 @@ namespace ExpenseTracker.Views
             _contextMenu.Items.Add("Edytuj", null, OnEditClick);
             _contextMenu.Items.Add("Usuń", null, OnDeleteClick);
             dataGridViewTransactions.MouseDown += DataGridViewTransactions_MouseDown;
+
+
+            textBox1.TextChanged += (s, e) => ApplyFilters();
+            radioButtonIncome.CheckedChanged += (s, e) => ApplyFilters();
+            radioButtonExpense.CheckedChanged += (s, e) => ApplyFilters();
+            dateTimePicker1.ValueChanged += (s, e) => ApplyFilters();
+            checkBoxUseDate.CheckedChanged += (s, e) => ApplyFilters();
+            comboBoxCategory.SelectedIndexChanged += (s, e) => ApplyFilters();
+
+            radioButtonAll.Checked = true; // Domyślnie wszystkie transakcje
         }
 
         private async void TransactionView_Load(object sender, EventArgs e)
         {
             await LoadTransactionsAsync();
+            await LoadCategoriesAsync();
         }
 
         private async Task LoadTransactionsAsync()
@@ -90,11 +111,69 @@ namespace ExpenseTracker.Views
             var incomes = await _txService.GetForAccountIncomeAsync(_currentAccount.AccountId);
             var expenses = await _txService.GetForAccountExpensesAsync(_currentAccount.AccountId);
 
-            var all = incomes.Concat(expenses)
-                             .OrderByDescending(t => t.OccurredAt)
-                             .ToList();
+            _allTransactions = incomes.Concat(expenses)
+                                     .OrderByDescending(t => t.OccurredAt)
+                                     .ToList();
 
-            _transactions = new BindingList<Transaction>(all);
+            ApplyFilters();
+        }
+
+
+        private async Task LoadCategoriesAsync()
+        {
+            List<Category> categories = await _categoryService
+                .GetForAccountCategoriesAsync(_currentAccount.AccountId);
+
+            var categoriesWithAllOption = new List<Category>
+    {
+        new Category { CategoryId = 0, Name = "Wszystkie" }
+    };
+            categoriesWithAllOption.AddRange(categories);
+
+            comboBoxCategory.DataSource = categoriesWithAllOption;
+            comboBoxCategory.DisplayMember = "Name";
+            comboBoxCategory.ValueMember = "CategoryId";
+            comboBoxCategory.SelectedIndex = 0;
+        }
+
+        private void ApplyFilters()
+        {
+            if (_allTransactions == null) return;
+
+            var filtered = _allTransactions.AsEnumerable();
+
+            // Filtrowanie po nazwie
+            string keyword = textBox1.Text.Trim().ToLower();
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                filtered = filtered.Where(t =>
+                    (t.Description != null && t.Description.ToLower().Contains(keyword)) ||
+                    (t.Category != null && t.Category.Name.ToLower().Contains(keyword)));
+            }
+
+            // Filtrowanie po typie
+            if (radioButtonIncome.Checked)
+            {
+                filtered = filtered.Where(t => t.Category.Type == TransactionType.Income);
+            }
+            else if (radioButtonExpense.Checked)
+            {
+                filtered = filtered.Where(t => t.Category.Type == TransactionType.Expense);
+            }
+
+            //Filtrowanie po dacie, tylko jeśli checkbox jest zaznaczony
+            if (checkBoxUseDate.Checked)
+            {
+                var selectedDate = dateTimePicker1.Value.Date;
+                filtered = filtered.Where(t => t.OccurredAt.Date == selectedDate);
+            }
+
+            if (comboBoxCategory.SelectedItem is Category selectedCategory && selectedCategory.CategoryId != 0)
+            {
+                filtered = filtered.Where(t => t.Category?.CategoryId == selectedCategory.CategoryId);
+            }
+
+            _transactions = new BindingList<Transaction>(filtered.ToList());
             dataGridViewTransactions.DataSource = _transactions;
         }
 
@@ -167,6 +246,11 @@ namespace ExpenseTracker.Views
                 await _txService.DeleteAsync(tx.TransactionId);
                 await LoadTransactionsAsync();
             }
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

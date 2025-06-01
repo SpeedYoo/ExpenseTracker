@@ -34,8 +34,6 @@
             logout_btn = new Button();
             user_name = new Label();
             category_btn = new Button();
-            income_btn = new Button();
-            expenses_btn = new Button();
             dashboard_btn = new Button();
             label2 = new Label();
             pictureBox1 = new PictureBox();
@@ -52,8 +50,6 @@
             panel2.Controls.Add(logout_btn);
             panel2.Controls.Add(user_name);
             panel2.Controls.Add(category_btn);
-            panel2.Controls.Add(income_btn);
-            panel2.Controls.Add(expenses_btn);
             panel2.Controls.Add(dashboard_btn);
             panel2.Controls.Add(label2);
             panel2.Controls.Add(pictureBox1);
@@ -70,7 +66,7 @@
             addtransaction_btn.FlatStyle = FlatStyle.Flat;
             addtransaction_btn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             addtransaction_btn.ForeColor = Color.White;
-            addtransaction_btn.Location = new Point(12, 548);
+            addtransaction_btn.Location = new Point(12, 448);
             addtransaction_btn.Name = "addtransaction_btn";
             addtransaction_btn.Size = new Size(212, 44);
             addtransaction_btn.TabIndex = 10;
@@ -85,7 +81,7 @@
             transaction_btn.FlatStyle = FlatStyle.Flat;
             transaction_btn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             transaction_btn.ForeColor = Color.White;
-            transaction_btn.Location = new Point(12, 498);
+            transaction_btn.Location = new Point(12, 398);
             transaction_btn.Name = "transaction_btn";
             transaction_btn.Size = new Size(212, 44);
             transaction_btn.TabIndex = 9;
@@ -126,43 +122,13 @@
             category_btn.FlatStyle = FlatStyle.Flat;
             category_btn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             category_btn.ForeColor = Color.White;
-            category_btn.Location = new Point(12, 448);
+            category_btn.Location = new Point(12, 348);
             category_btn.Name = "category_btn";
             category_btn.Size = new Size(212, 44);
             category_btn.TabIndex = 5;
             category_btn.Text = "Kategorie";
             category_btn.UseVisualStyleBackColor = false;
             category_btn.Click += category_btn_Click;
-            // 
-            // income_btn
-            // 
-            income_btn.BackColor = Color.SeaGreen;
-            income_btn.FlatAppearance.BorderSize = 0;
-            income_btn.FlatStyle = FlatStyle.Flat;
-            income_btn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            income_btn.ForeColor = Color.White;
-            income_btn.Location = new Point(12, 398);
-            income_btn.Name = "income_btn";
-            income_btn.Size = new Size(212, 44);
-            income_btn.TabIndex = 4;
-            income_btn.Text = "Przychody";
-            income_btn.UseVisualStyleBackColor = false;
-            income_btn.Click += income_btn_Click;
-            // 
-            // expenses_btn
-            // 
-            expenses_btn.BackColor = Color.SeaGreen;
-            expenses_btn.FlatAppearance.BorderSize = 0;
-            expenses_btn.FlatStyle = FlatStyle.Flat;
-            expenses_btn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            expenses_btn.ForeColor = Color.White;
-            expenses_btn.Location = new Point(12, 348);
-            expenses_btn.Name = "expenses_btn";
-            expenses_btn.Size = new Size(212, 44);
-            expenses_btn.TabIndex = 3;
-            expenses_btn.Text = "Wydatki";
-            expenses_btn.UseVisualStyleBackColor = false;
-            expenses_btn.Click += expenses_btn_Click;
             // 
             // dashboard_btn
             // 
@@ -203,10 +169,10 @@
             // panel_main
             // 
             panel_main.AutoSize = true;
-            panel_main.Dock = DockStyle.Fill;
+            panel_main.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             panel_main.Location = new Point(237, 0);
             panel_main.Name = "panel_main";
-            panel_main.Size = new Size(1280, 747);
+            panel_main.Size = new Size(0, 0);
             panel_main.TabIndex = 2;
             // 
             // MainForm
@@ -217,6 +183,7 @@
             Controls.Add(panel_main);
             Controls.Add(panel2);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             Name = "MainForm";
             Text = "Menadżer budżetu";
             Load += MainForm_Load;
@@ -232,8 +199,6 @@
         private PictureBox pictureBox1;
         private Label label2;
         private Button category_btn;
-        private Button income_btn;
-        private Button expenses_btn;
         private Button dashboard_btn;
         private Panel panel_main;
         private Label user_name;
