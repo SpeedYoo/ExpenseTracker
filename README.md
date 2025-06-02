@@ -108,3 +108,7 @@ W pliku `appsettings.json`:
         "DefaultConnection": "Host=localhost;Database=expense_db;Username=postgres;Password=balica"
     }
 }
+```
+
+### 3. Uruchomienie aplikacji
+W Visual Studio uruchom projekt ExpenseTracker jako WinForms App. W przypadku kiedy baza danych jest pusta zostanie uruchomiony Seeder który wypełni bazę danych przykładowymi danymi.
