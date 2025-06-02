@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ExpenseTracker.Data.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace ExpenseTracker.Data
 {
@@ -14,13 +15,33 @@ namespace ExpenseTracker.Data
         public DbSet<Category> Categories { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
 
+        private static string? _connectionString;
+
+        public AppDbContext()
+        {
+        }
+
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
+        {
+        }
+
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseNpgsql("Host=localhost;Database=expense_db;Username=postgres;Password=balica");
+                if (_connectionString == null)
+                {
+                    var config = new ConfigurationBuilder()
+                        .SetBasePath(AppContext.BaseDirectory)
+                        .AddJsonFile("appsettings.json", optional: false)
+                        .Build();
+
+                    _connectionString = config.GetConnectionString("DefaultConnection");
+                }
+
+                optionsBuilder.UseNpgsql(_connectionString);
             }
-            
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -9,63 +9,87 @@ namespace ExpenseTracker.Data
 {
     internal static class DbSeeder
     {
+        private static readonly Random _random = new Random();
+
         public static void Seed(AppDbContext ctx)
         {
             if (!ctx.Accounts.Any())
             {
-                ctx.Accounts.Add(new Account
+                var accounts = new List<Account>();
+
+                for (int i = 1; i <= 3; i++)
                 {
-                    Name = "Domyślne konto",
-                    Description = "Konto domyślne",
-                    Balance = 0m,
-                    CreatedAt = DateTime.UtcNow
-                });
+                    accounts.Add(new Account
+                    {
+                        Name = $"Konto {i}",
+                        Description = $"Opis konta {i}",
+                        Balance = 0m,
+                        CreatedAt = DateTime.UtcNow.AddDays(-_random.Next(10, 100))
+                    });
+                }
+
+                ctx.Accounts.AddRange(accounts);
+                ctx.SaveChanges(); // zapisujemy, żeby mieć AccountId
             }
 
-            if (!ctx.Categories.Any(c => c.AccountId == 1))
+            var accountsFromDb = ctx.Accounts.ToList();
+
+            foreach (var account in accountsFromDb)
             {
-                ctx.Categories.AddRange(
-                    new Category { Name = "Pensja", Type = TransactionType.Income, AccountId = 1 },
-                    new Category { Name = "Zakupy", Type = TransactionType.Expense, AccountId = 1 },
-                    new Category { Name = "Transport", Type = TransactionType.Expense, AccountId = 1 }
-                );
-            }
+                if (!ctx.Categories.Any(c => c.AccountId == account.AccountId))
+                {
+                    var categories = new List<Category>
+                {
+                    new Category { Name = "Pensja", Type = TransactionType.Income, AccountId = account.AccountId },
+                    new Category { Name = "Premia", Type = TransactionType.Income, AccountId = account.AccountId },
+                    new Category { Name = "Zakupy", Type = TransactionType.Expense, AccountId = account.AccountId },
+                    new Category { Name = "Transport", Type = TransactionType.Expense, AccountId = account.AccountId },
+                    new Category { Name = "Rozrywka", Type = TransactionType.Expense, AccountId = account.AccountId }
+                };
 
+                    ctx.Categories.AddRange(categories);
+                    ctx.SaveChanges(); // zapisujemy, żeby mieć CategoryId
+                }
+            }
 
             if (!ctx.Transactions.Any())
             {
-                ctx.Transactions.AddRange(
-                    new Transaction
-                    {
-                        AccountId = 1,
-                        CategoryId = 1,
-                        Amount = 5000m,
-                        OccurredAt = DateTime.UtcNow.AddDays(-30),
-                        Description = "Wypłata miesięczna",
-                        CreatedAt = DateTime.UtcNow.AddDays(-30)
-                    },
-                    new Transaction
-                    {
-                        AccountId = 1,
-                        CategoryId = 2,
-                        Amount = 150m,
-                        OccurredAt = DateTime.UtcNow.AddDays(-10),
-                        Description = "Zakupy spożywcze",
-                        CreatedAt = DateTime.UtcNow.AddDays(-10)
-                    },
-                    new Transaction
-                    {
-                        AccountId = 1,
-                        CategoryId = 3,
-                        Amount = 20m,
-                        OccurredAt = DateTime.UtcNow.AddDays(-5),
-                        Description = "Bilet komunikacji",
-                        CreatedAt = DateTime.UtcNow.AddDays(-5)
-                    }
-                );
-            }
+                var allCategories = ctx.Categories.ToList();
+                var transactions = new List<Transaction>();
 
-            ctx.SaveChanges();
+                foreach (var account in accountsFromDb)
+                {
+                    var categoriesForAccount = allCategories.Where(c => c.AccountId == account.AccountId).ToList();
+
+                    for (int i = 0; i < _random.Next(20, 50); i++)
+                    {
+                        var category = categoriesForAccount[_random.Next(categoriesForAccount.Count)];
+
+                        var amount = category.Type == TransactionType.Income
+                            ? _random.Next(1000, 10000)
+                            : _random.Next(10, 1000);
+
+                        var daysAgo = _random.Next(1, 90);
+                        var date = DateTime.UtcNow.AddDays(-daysAgo);
+
+                        transactions.Add(new Transaction
+                        {
+                            AccountId = account.AccountId,
+                            CategoryId = category.CategoryId,
+                            Amount = amount,
+                            OccurredAt = date,
+                            Description = $"{category.Name} - transakcja {i + 1}",
+                            CreatedAt = date
+                        });
+
+                        // Aktualizacja salda konta (w pamięci)
+                        account.Balance += category.Type == TransactionType.Income ? amount : -amount;
+                    }
+                }
+
+                ctx.Transactions.AddRange(transactions);
+                ctx.SaveChanges();
+            }
         }
     }
 }

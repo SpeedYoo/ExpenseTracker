@@ -60,20 +60,11 @@ namespace ExpenseTracker.Forms
             //
         }
 
-        private void expenses_btn_Click(object sender, EventArgs e)
-        {
-            ShowView(new ExpenseView(_currentAccount));
-        }
-
         private void dashboard_btn_Click(object sender, EventArgs e)
         {
             ShowView(new DashboardView(_currentAccount));
         }
 
-        private void income_btn_Click(object sender, EventArgs e)
-        {
-            ShowView(new IncomeView(_currentAccount));
-        }
 
         private void category_btn_Click(object sender, EventArgs e)
         {
