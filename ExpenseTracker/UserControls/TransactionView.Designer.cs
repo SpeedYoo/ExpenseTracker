@@ -59,17 +59,19 @@
             panel1.Controls.Add(textBox1);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(dataGridViewTransactions);
-            panel1.Location = new Point(34, 14);
+            panel1.Location = new Point(39, 19);
+            panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1212, 658);
+            panel1.Size = new Size(1385, 877);
             panel1.TabIndex = 2;
             // 
             // radioButtonAll
             // 
             radioButtonAll.AutoSize = true;
-            radioButtonAll.Location = new Point(14, 45);
+            radioButtonAll.Location = new Point(16, 60);
+            radioButtonAll.Margin = new Padding(3, 4, 3, 4);
             radioButtonAll.Name = "radioButtonAll";
-            radioButtonAll.Size = new Size(76, 19);
+            radioButtonAll.Size = new Size(94, 24);
             radioButtonAll.TabIndex = 12;
             radioButtonAll.TabStop = true;
             radioButtonAll.Text = "Wszystkie";
@@ -78,9 +80,10 @@
             // checkBoxUseDate
             // 
             checkBoxUseDate.AutoSize = true;
-            checkBoxUseDate.Location = new Point(887, 31);
+            checkBoxUseDate.Location = new Point(1004, 43);
+            checkBoxUseDate.Margin = new Padding(3, 4, 3, 4);
             checkBoxUseDate.Name = "checkBoxUseDate";
-            checkBoxUseDate.Size = new Size(104, 19);
+            checkBoxUseDate.Size = new Size(130, 24);
             checkBoxUseDate.TabIndex = 11;
             checkBoxUseDate.Text = "Filtruj po dacie";
             checkBoxUseDate.UseVisualStyleBackColor = true;
@@ -88,33 +91,36 @@
             // comboBoxCategory
             // 
             comboBoxCategory.FormattingEnabled = true;
-            comboBoxCategory.Location = new Point(688, 29);
+            comboBoxCategory.Location = new Point(798, 39);
+            comboBoxCategory.Margin = new Padding(3, 4, 3, 4);
             comboBoxCategory.Name = "comboBoxCategory";
-            comboBoxCategory.Size = new Size(170, 23);
+            comboBoxCategory.Size = new Size(194, 28);
             comboBoxCategory.TabIndex = 10;
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(560, 35);
+            label4.Location = new Point(637, 46);
             label4.Name = "label4";
-            label4.Size = new Size(122, 15);
+            label4.Size = new Size(155, 20);
             label4.TabIndex = 9;
             label4.Text = "Wyszukaj po kategorii";
             // 
             // dateTimePicker1
             // 
-            dateTimePicker1.Location = new Point(997, 27);
+            dateTimePicker1.Location = new Point(1140, 40);
+            dateTimePicker1.Margin = new Padding(3, 4, 3, 4);
             dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(202, 23);
+            dateTimePicker1.Size = new Size(230, 27);
             dateTimePicker1.TabIndex = 6;
             // 
             // radioButtonExpense
             // 
             radioButtonExpense.AutoSize = true;
-            radioButtonExpense.Location = new Point(182, 45);
+            radioButtonExpense.Location = new Point(208, 60);
+            radioButtonExpense.Margin = new Padding(3, 4, 3, 4);
             radioButtonExpense.Name = "radioButtonExpense";
-            radioButtonExpense.Size = new Size(68, 19);
+            radioButtonExpense.Size = new Size(84, 24);
             radioButtonExpense.TabIndex = 5;
             radioButtonExpense.TabStop = true;
             radioButtonExpense.Text = "Wydatki";
@@ -123,9 +129,10 @@
             // radioButtonIncome
             // 
             radioButtonIncome.AutoSize = true;
-            radioButtonIncome.Location = new Point(96, 45);
+            radioButtonIncome.Location = new Point(110, 60);
+            radioButtonIncome.Margin = new Padding(3, 4, 3, 4);
             radioButtonIncome.Name = "radioButtonIncome";
-            radioButtonIncome.Size = new Size(80, 19);
+            radioButtonIncome.Size = new Size(97, 24);
             radioButtonIncome.TabIndex = 4;
             radioButtonIncome.TabStop = true;
             radioButtonIncome.Text = "Przychody";
@@ -134,27 +141,28 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(256, 35);
+            label2.Location = new Point(290, 47);
             label2.Name = "label2";
-            label2.Size = new Size(107, 15);
+            label2.Size = new Size(136, 20);
             label2.TabIndex = 3;
             label2.Text = "Wyszukaj po opisie";
             label2.Click += label2_Click;
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(369, 29);
+            textBox1.Location = new Point(432, 42);
+            textBox1.Margin = new Padding(3, 4, 3, 4);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(175, 23);
+            textBox1.Size = new Size(199, 27);
             textBox1.TabIndex = 2;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(21, 10);
+            label1.Location = new Point(24, 13);
             label1.Name = "label1";
-            label1.Size = new Size(142, 25);
+            label1.Size = new Size(183, 32);
             label1.TabIndex = 1;
             label1.Text = "Lista transakcji";
             // 
@@ -163,20 +171,23 @@
             dataGridViewTransactions.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridViewTransactions.BackgroundColor = Color.Gainsboro;
             dataGridViewTransactions.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewTransactions.Location = new Point(31, 70);
+            dataGridViewTransactions.Location = new Point(35, 93);
+            dataGridViewTransactions.Margin = new Padding(3, 4, 3, 4);
             dataGridViewTransactions.Name = "dataGridViewTransactions";
-            dataGridViewTransactions.Size = new Size(1168, 585);
+            dataGridViewTransactions.RowHeadersWidth = 51;
+            dataGridViewTransactions.Size = new Size(1335, 780);
             dataGridViewTransactions.TabIndex = 0;
             // 
             // TransactionView
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSize = true;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             Controls.Add(panel1);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "TransactionView";
-            Size = new Size(1249, 675);
+            Size = new Size(1427, 900);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewTransactions).EndInit();

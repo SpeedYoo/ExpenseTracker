@@ -26,7 +26,7 @@ namespace ExpenseTracker.Forms
             InitializeComponent();
         }
 
-        private async void btnSave_Click(object sender, EventArgs e)
+        private async void btnSave_Click_1(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtName.Text))
             {
@@ -46,12 +46,15 @@ namespace ExpenseTracker.Forms
             _ctx.Accounts.Add(account);
             await _ctx.SaveChangesAsync();
 
+
+            Console.WriteLine(account);
+
             CreatedAccountId = account.AccountId;
             DialogResult = DialogResult.OK;
             Close();
         }
 
-        private void btnCancel_Click(object sender, EventArgs e)
+        private void btnCancel_Click_1(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
             Close();

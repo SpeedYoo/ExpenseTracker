@@ -55,8 +55,9 @@
             panel2.Controls.Add(pictureBox1);
             panel2.Dock = DockStyle.Left;
             panel2.Location = new Point(0, 0);
+            panel2.Margin = new Padding(3, 4, 3, 4);
             panel2.Name = "panel2";
-            panel2.Size = new Size(237, 747);
+            panel2.Size = new Size(271, 996);
             panel2.TabIndex = 1;
             // 
             // addtransaction_btn
@@ -66,9 +67,10 @@
             addtransaction_btn.FlatStyle = FlatStyle.Flat;
             addtransaction_btn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             addtransaction_btn.ForeColor = Color.White;
-            addtransaction_btn.Location = new Point(12, 448);
+            addtransaction_btn.Location = new Point(14, 597);
+            addtransaction_btn.Margin = new Padding(3, 4, 3, 4);
             addtransaction_btn.Name = "addtransaction_btn";
-            addtransaction_btn.Size = new Size(212, 44);
+            addtransaction_btn.Size = new Size(242, 59);
             addtransaction_btn.TabIndex = 10;
             addtransaction_btn.Text = "Dodaj transakcje";
             addtransaction_btn.UseVisualStyleBackColor = false;
@@ -81,9 +83,10 @@
             transaction_btn.FlatStyle = FlatStyle.Flat;
             transaction_btn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             transaction_btn.ForeColor = Color.White;
-            transaction_btn.Location = new Point(12, 398);
+            transaction_btn.Location = new Point(14, 531);
+            transaction_btn.Margin = new Padding(3, 4, 3, 4);
             transaction_btn.Name = "transaction_btn";
-            transaction_btn.Size = new Size(212, 44);
+            transaction_btn.Size = new Size(242, 59);
             transaction_btn.TabIndex = 9;
             transaction_btn.Text = "Lista transakcji";
             transaction_btn.UseVisualStyleBackColor = false;
@@ -96,9 +99,10 @@
             logout_btn.FlatStyle = FlatStyle.Flat;
             logout_btn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             logout_btn.ForeColor = Color.White;
-            logout_btn.Location = new Point(12, 691);
+            logout_btn.Location = new Point(14, 921);
+            logout_btn.Margin = new Padding(3, 4, 3, 4);
             logout_btn.Name = "logout_btn";
-            logout_btn.Size = new Size(212, 44);
+            logout_btn.Size = new Size(242, 59);
             logout_btn.TabIndex = 8;
             logout_btn.Text = "Wyloguj się";
             logout_btn.UseVisualStyleBackColor = false;
@@ -109,9 +113,9 @@
             user_name.AutoSize = true;
             user_name.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             user_name.ForeColor = Color.White;
-            user_name.Location = new Point(80, 170);
+            user_name.Location = new Point(105, 227);
             user_name.Name = "user_name";
-            user_name.Size = new Size(54, 30);
+            user_name.Size = new Size(71, 37);
             user_name.TabIndex = 7;
             user_name.Text = "user";
             // 
@@ -122,9 +126,10 @@
             category_btn.FlatStyle = FlatStyle.Flat;
             category_btn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             category_btn.ForeColor = Color.White;
-            category_btn.Location = new Point(12, 348);
+            category_btn.Location = new Point(14, 464);
+            category_btn.Margin = new Padding(3, 4, 3, 4);
             category_btn.Name = "category_btn";
-            category_btn.Size = new Size(212, 44);
+            category_btn.Size = new Size(242, 59);
             category_btn.TabIndex = 5;
             category_btn.Text = "Kategorie";
             category_btn.UseVisualStyleBackColor = false;
@@ -137,9 +142,10 @@
             dashboard_btn.FlatStyle = FlatStyle.Flat;
             dashboard_btn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             dashboard_btn.ForeColor = Color.White;
-            dashboard_btn.Location = new Point(12, 298);
+            dashboard_btn.Location = new Point(14, 397);
+            dashboard_btn.Margin = new Padding(3, 4, 3, 4);
             dashboard_btn.Name = "dashboard_btn";
-            dashboard_btn.Size = new Size(212, 44);
+            dashboard_btn.Size = new Size(242, 59);
             dashboard_btn.TabIndex = 2;
             dashboard_btn.Text = "Strona główna";
             dashboard_btn.UseVisualStyleBackColor = false;
@@ -150,18 +156,19 @@
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.White;
-            label2.Location = new Point(17, 170);
+            label2.Location = new Point(19, 227);
             label2.Name = "label2";
-            label2.Size = new Size(77, 30);
+            label2.Size = new Size(100, 37);
             label2.TabIndex = 1;
             label2.Text = "Witaj, ";
             // 
             // pictureBox1
             // 
             pictureBox1.Image = Properties.Resources.salary;
-            pictureBox1.Location = new Point(48, 25);
+            pictureBox1.Location = new Point(55, 33);
+            pictureBox1.Margin = new Padding(3, 4, 3, 4);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(120, 109);
+            pictureBox1.Size = new Size(137, 145);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
@@ -170,19 +177,21 @@
             // 
             panel_main.AutoSize = true;
             panel_main.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            panel_main.Location = new Point(237, 0);
+            panel_main.Location = new Point(271, 0);
+            panel_main.Margin = new Padding(3, 4, 3, 4);
             panel_main.Name = "panel_main";
             panel_main.Size = new Size(0, 0);
             panel_main.TabIndex = 2;
             // 
             // MainForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1517, 747);
+            ClientSize = new Size(1734, 996);
             Controls.Add(panel_main);
             Controls.Add(panel2);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Margin = new Padding(3, 4, 3, 4);
             MaximizeBox = false;
             Name = "MainForm";
             Text = "Menadżer budżetu";
